@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import ButtonProps from './ButtonProps';
 
 const StyledButton = styled(Button)`
-    .ant-btn {
+    &.ant-btn {
         width: 100%;
         height: 100%;
     }

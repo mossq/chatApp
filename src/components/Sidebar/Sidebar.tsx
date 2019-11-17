@@ -55,13 +55,15 @@ const data = [
 ];
 
 const StyledSidebar = styled.div`
-    width: 200px;
+    width: 17%;
     background-color: #4a5e80;
     color: #faecde;
     padding: 15px;
     font-size: 18px;
     display: inline-block;
-    overflow: hidden;
+    overflow: auto;
+    height: 100%;
+    max-width: 220px;
 `;
 class Sidebar extends Component<{}> {
   handleClickAdd() {

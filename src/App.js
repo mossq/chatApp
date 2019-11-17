@@ -3,6 +3,7 @@ import React from 'react';
 import Btn from './assets/Button/Button.tsx';
 import TextArea from './assets/TextArea/TextArea.tsx';
 import 'antd/dist/antd.css';
+import styled from 'styled-components';
 
 import Sidebar from './components/Sidebar/Sidebar';
 import MessageBoard from './components/MessageBoard/MessageBoard';
@@ -43,15 +44,19 @@ const messages = [{
     }]
 }];
 
+const StyledMainContainer = styled.div`
+  height: 100vh;
+`;
+
 function App() {
   return (
     <React.Fragment>
-      <div style={{ marginLeft: "10px" }}>
+      <StyledMainContainer>
         <Sidebar />
-        <div style={{ display: "inline-block", width: "90%", overflow: "hidden" }}>
+        <div style={{ display: "inline-block", width: "83%", height: "100%", overflow: "auto", position: "relative" }}>
           <MessageBoard data={messages} />
-          <div style={{ display: "inline-block", bottom: "0", width: "100%" }}>
-            <div style={{ display: "inline-block", width: "95%", height: "50px" }}>
+          <div style={{ bottom: "0", width: "100%", position: "absolute", padding: "20px" }}>
+            <div style={{ display: "inline-block", width: "95%" }}>
               <TextArea placeholderText="Start typing.." />
             </div>
             <div style={{ display: "inline-block", position: "absolute", width: "5%", height: "50px" }}>
@@ -59,7 +64,7 @@ function App() {
             </div>
           </div>
         </div>
-      </div>
+      </StyledMainContainer>
     </React.Fragment>
   );
 }

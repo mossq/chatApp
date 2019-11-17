@@ -5,8 +5,11 @@ import MessageRow from './../../assets/MessageRow/MessageRow';
 import MessageBoardProps from './MessageBoardProps';
 
 const StyledMessageBoard = styled.div`
-    padding: 15px;
-    font-size: 18px
+    position: absolute;
+    bottom: 70px;
+    width: 100%;
+    overflow: auto;
+    padding: 20px;
 `;
 
 const MessageBoard = (props: MessageBoardProps) => {
