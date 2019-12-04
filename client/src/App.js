@@ -48,6 +48,13 @@ const StyledMainContainer = styled.div`
   height: 100vh;
 `;
 
+// An example of using fetch to read our API without Socket.io
+function callAPI() {
+  fetch("http://localhost:3001/testAPI")
+      .then(res => res.text())
+      .then(res => console.log(res));
+};
+
 function App() {
   return (
     <React.Fragment>
@@ -60,7 +67,7 @@ function App() {
               <TextArea placeholderText="Start typing.." />
             </div>
             <div style={{ display: "inline-block", position: "absolute", width: "5%", height: "50px" }}>
-              <Btn content="Send" handleClick={btnClick} />
+              <Btn content="Send" handleClick={callAPI} />
             </div>
           </div>
         </div>
