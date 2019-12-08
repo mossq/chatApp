@@ -10,7 +10,10 @@ class TxtArea extends React.Component<TextAreaProps, TextAreaState> {
     constructor(props: Readonly<TextAreaProps>) {
         super(props);
 
-        this.state = { value: "", placeholder: props.placeholderText };
+        this.state = { 
+            value: "", 
+            placeholder: props.placeholderText
+        };
         this.handlePressEnter = this.handlePressEnter.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
@@ -18,7 +21,10 @@ class TxtArea extends React.Component<TextAreaProps, TextAreaState> {
     handlePressEnter(event: React.KeyboardEvent<HTMLTextAreaElement>) {
         if (!event.shiftKey) {
             event.preventDefault();
-            this.setState({ value: "" });
+            this.props.onEnter(this.state.value);
+            this.setState({
+                value: ""
+            });
         }
     }
 
@@ -32,7 +38,12 @@ class TxtArea extends React.Component<TextAreaProps, TextAreaState> {
 
     render() {
         return (
-            <TextArea onChange={this.handleChange} onPressEnter={this.handlePressEnter} placeholder={this.state.placeholder} value={this.state.value} />
+            <TextArea 
+                onChange={this.handleChange} 
+                onPressEnter={this.handlePressEnter}
+                placeholder={this.state.placeholder}
+                value={this.state.value}
+            />
         );
     }
 }

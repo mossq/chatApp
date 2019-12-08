@@ -1,3 +1,4 @@
 export default interface TextAreaProps {
-    placeholderText?: string
+    placeholderText?: string,
+    onEnter: any
 }

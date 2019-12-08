@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Client from './client.js';
 import Btn from './assets/Button/Button.tsx';
 import TextArea from './assets/TextArea/TextArea.tsx';
 import 'antd/dist/antd.css';
@@ -21,10 +22,6 @@ const msgs = [
   }
 ];
 
-const btnClick = () => {
-  console.log("Nie klikłeś!!");
-}
-
 const messages = [{
   username: "Piotr",
   userID: 1,
@@ -45,35 +42,41 @@ const messages = [{
 }];
 
 const StyledMainContainer = styled.div`
-  height: 100vh;
+	height: 100vh;
 `;
 
 // An example of using fetch to read our API without Socket.io
 function callAPI() {
-  fetch("http://localhost:3001/testAPI")
-      .then(res => res.text())
-      .then(res => console.log(res));
+	fetch("http://localhost:3001/testAPI")
+    .then(res => res.text())
+    .then(res => console.log(res));
 };
 
+const emitMessage = (message) => {
+
+}
+
 function App() {
-  return (
-    <React.Fragment>
-      <StyledMainContainer>
-        <Sidebar />
-        <div style={{ display: "inline-block", width: "83%", height: "100%", overflow: "auto", position: "relative" }}>
-          <MessageBoard data={messages} />
-          <div style={{ bottom: "0", width: "100%", position: "absolute", padding: "20px" }}>
-            <div style={{ display: "inline-block", width: "95%" }}>
-              <TextArea placeholderText="Start typing.." />
-            </div>
-            <div style={{ display: "inline-block", position: "absolute", width: "5%", height: "50px" }}>
-              <Btn content="Send" handleClick={callAPI} />
-            </div>
-          </div>
-        </div>
-      </StyledMainContainer>
-    </React.Fragment>
-  );
+	
+	return (
+		<React.Fragment>
+			<StyledMainContainer>
+				<Sidebar />
+				<div style={{ display: "inline-block", width: "83%", height: "100%", overflow: "auto", position: "relative" }}>
+					<MessageBoard data={messages} />
+					<div style={{ bottom: "0", width: "100%", position: "absolute", padding: "20px" }}>
+						<div style={{ display: "inline-block", width: "95%" }}>
+							<TextArea placeholderText="Start typing.." onEnter={emitMessage}/>
+						</div>
+						<div style={{ display: "inline-block", position: "absolute", width: "5%", height: "50px" }}>
+							<Btn content="Send" handleClick={emitMessage} />
+						</div>
+					</div>
+				</div>
+			</StyledMainContainer>
+		</React.Fragment>
+	);
+	
 }
 
 export default App;
