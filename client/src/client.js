@@ -1,14 +1,10 @@
 import io from 'socket.io-client';
 
-function Client() {
-    // TODO add emits and event handlers
-    const socket = io.connect('http://localhost:3001');
-
-    return socket;
+function handleMessageSentEvent(message) {
+    console.log("Message received on client: " + message);
 }
 
-export default Client;
+let socket = io("http://localhost:3001");
+socket.on("msgsent", handleMessageSentEvent);
 
-/*import io from "socket.io-client";
-let socket = io("http://localhost:8000/chat");
-export default socket;*/
+export default socket;
