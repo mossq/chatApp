@@ -6,8 +6,9 @@ import ButtonProps from './ButtonProps';
 
 const StyledButton = styled(Button)`
     &.ant-btn {
-        width: 100%;
-        height: 100%;
+        padding: 12px;
+        height: auto;
+        font-size: 18px;
     }
 `;
 

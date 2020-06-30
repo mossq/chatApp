@@ -6,31 +6,32 @@ const port = 3001
 
 app.use(cors());
 
-/*
- Add API routes here
-*/
-const indexRouter = require('./routes/index');
-const testAPIRouter = require('./routes/testAPI');
+
+// Add API routes here
+const { router: indexRouter, room: indexRoomAPI } = require('./routes/index');
+const { router: chatRouter, room: chatRoomAPI } = require('./routes/chat');
 
 app.use('/', indexRouter);
-app.use('/testapi', testAPIRouter);
+app.use('/chat', chatRouter);
 
+
+// Initialize Socket.io connections to specific endpoints
+const index = io.of('/');
+indexRoomAPI(index);
+
+const chat = io.of('/chat');
+chatRoomAPI(chat);
+
+
+// Connect/disconnect events control
 io.on('connection', function (socket) {
     console.log('a user connected');
-
-    socket.on("msgsent", function (msg) {
-        handleMessageSentEvent(msg);
-
-        socket.emit("msgsent", msg);
-    });
 
     socket.on('disconnect', function () {
         console.log('user disconnected');
     });
 });
 
-http.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
-function handleMessageSentEvent(message) {
-    console.log("Message received on server: " + message);
-}
+// Start listening
+http.listen(port, () => console.log(`Chat app listening on port ${port}!`))
